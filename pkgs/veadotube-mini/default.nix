@@ -31,6 +31,7 @@
 , liburing
 , mesa
 , icu
+, freetype
 }:
 let
   pname = "veadotube-mini";
@@ -75,6 +76,7 @@ in stdenv.mkDerivation {
     liburing
     mesa
     icu
+    freetype
   ];
   autoPatchelfIgnoreMissingDeps = [ "libsteam_api.so" "libGLES_CM.so.1" ];
   unpackPhase = ''
@@ -87,7 +89,7 @@ in stdenv.mkDerivation {
     cp -r text $out/share/veadotube-mini/
     makeWrapper $out/share/veadotube-mini/veadotube-mini $out/bin/veadotube-mini \
       --chdir "$out/share/veadotube-mini" \
-      --prefix LD_LIBRARY_PATH : ${icu}/lib \
+      --prefix LD_LIBRARY_PATH : ${icu}/lib:${freetype}/lib \
       --set DOTNET_SYSTEM_GLOBALIZATION_INVARIANT 1
     mkdir -p $out/share/applications
     cat > $out/share/applications/${pname}.desktop << EOF
