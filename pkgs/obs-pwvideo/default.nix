@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
     owner = "hoshinolina";
     repo = "obs-pwvideo";
     rev = version;
-    sha256 = lib.fakeHash;
+    sha256 = "sha256-CCzeK5JyCWnIcty5xaDV5uCxvrMVx50f8SoLZnlF658=";
   };
 
   nativeBuildInputs = [ cmake ninja pkg-config ];
