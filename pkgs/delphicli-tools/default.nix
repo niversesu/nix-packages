@@ -11,11 +11,13 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ autoPatchelfHook ];
 
-  sourceRoot = ".";
+  sourceRoot = "delphitools-cli-x86_64-unknown-linux-gnu";
 
   installPhase = ''
     runHook preInstall
-    install -Dm755 delphitools-cli $out/bin/delphitools-cli
+    install -Dm755 delphitools $out/bin/delphitools
+    ln -s delphitools $out/bin/delphi
+    ln -s delphitools $out/bin/dt
     runHook postInstall
   '';
 
