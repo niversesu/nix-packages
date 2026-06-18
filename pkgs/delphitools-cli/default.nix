@@ -6,10 +6,11 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/1612elphi/delphitools-cli/releases/download/v${version}/delphitools-cli-x86_64-unknown-linux-gnu.tar.xz";
-    hash = "sha256-HPaP2XekvL1FSUqb/+MIy+jVPwjn593hlfJe9rJqCZY=";
+    hash = "sha256-Jhudr1lRyKugIrdG5JXIudObfW4YFh6Clgmv31DKELA=";
   };
 
   nativeBuildInputs = [ autoPatchelfHook ];
+  buildInputs = [ stdenv.cc.cc.lib ];
 
   sourceRoot = "delphitools-cli-x86_64-unknown-linux-gnu";
 
@@ -24,7 +25,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Delphi tools CLI";
     homepage = "https://github.com/1612elphi/delphitools-cli";
-    license = licenses.unfree; # adjust if known
+    license = licenses.mit; # adjust if known
     maintainers = [ ];
     platforms = [ "x86_64-linux" ];
     sourceProvenance = [ sourceTypes.binaryNativeCode ];
